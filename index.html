@@ -333,6 +333,7 @@
     
     $(document).ready(function () {
       console.log(map)
+      
       $.ajax({
         type: "GET",
         //YOUR TURN: Replace with csv export link
@@ -348,7 +349,8 @@
           delimiter: ','
         }, function (err, data) {
           map.on('load', function () {
-
+            //bug fix: map always at 13 zoom on load
+            map.zoomTo(14)
             //Add the the layer to the map
             map.addLayer({
               'id': 'csvData',
