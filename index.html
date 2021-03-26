@@ -330,8 +330,9 @@
     });
     // add zoom control widget
     map.addControl(new mapboxgl.NavigationControl());
-    console.log(map)
+    
     $(document).ready(function () {
+      console.log(map)
       $.ajax({
         type: "GET",
         //YOUR TURN: Replace with csv export link
