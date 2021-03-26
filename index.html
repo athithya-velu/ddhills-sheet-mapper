@@ -365,10 +365,10 @@
                 "circle-stroke-opacity": 0.5
               }
             });
+            // bug fix - map not loading initially because zoom is re-setting after adding data layer
             setTimeout(function() {
-              console.log(map);
               map.zoomTo(14);
-            }, 3000);
+            }, 300);
             
       
             // When a click event occurs on a feature in the csvData layer, open a popup at the
