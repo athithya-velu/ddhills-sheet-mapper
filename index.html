@@ -333,6 +333,10 @@
     
     $(document).ready(function () {
       console.log(map)
+      map.fitBounds([
+                  [77.180106137682, 13.37346448262413],
+                  [77.235997493922, 13.385764394589302]
+      ]);
       
       $.ajax({
         type: "GET",
@@ -349,8 +353,7 @@
           delimiter: ','
         }, function (err, data) {
           map.on('load', function () {
-            //bug fix: map always at 13 zoom on load
-            map.zoomTo(14)
+            
             //Add the the layer to the map
             map.addLayer({
               'id': 'csvData',
