@@ -396,23 +396,33 @@
               var imageModalButton;
               var videoModalButton;
               var audioModalButton;
+
               console.log(currentEvent.Photo,currentEvent.video,currentEvent.audio);
               
               if(currentEvent.Photo){
                 imageModalButton = `<a href="#openModal" id="imageModal" class="modalButton" onclick="showModal('images', currentEvent.Photo)">Images </a>`;
               
+              } else {
+                imageModalButton = "";
               }
               if(currentEvent.video){
                 videoModalButton = `<a href="#openModal" id="videoModal" class="modalButton" onclick="showModal('video', currentEvent.video)">Video</a>`;
                
+              } else {
+                videoModalButton = ""
               }
+
               if(currentEvent.audio){
                 audioModalButton = `<a href="#openModal" id="audioModal" class="modalButton" onclick="showModal('audio', currentEvent.audio)">Audio</a>`;
                
+              } else {
+                audioModalButton = "";
               }
               if(currentEvent.embed){
                 panoramaModalButton = `<a href="#openModal" id="panaromaModal" class="modalButton" onclick="showModal('panarom', currentEvent.embed)">Panorama</a>`;
                 
+              } else {
+                panoramaModalButton = "";
               }
               
               // if (currentEvent.Photo === "" && currentEvent.embed === "" && currentEvent.video === "" && currentEvent.audio==="") {
