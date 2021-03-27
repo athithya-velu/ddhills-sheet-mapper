@@ -194,7 +194,10 @@
       margin-right: auto;
       margin-left: auto;
     }
-    
+    .audio{
+      margin-right: auto;
+      margin-left: auto;
+    }
     h1, h2, h3, h4, h5, h6 {
       font-family: "Playfair Display", serif;
     }
@@ -282,6 +285,17 @@
         video.setAttribute('class', 'vid');
         video.controls = true;
         document.getElementById('imgBox').appendChild(video);
+      }
+      else if (text === 'audio' && src) {
+        modalHeaderText.innerText = 'Audio';
+        var iframBox = document.getElementById('imgBox');
+        iframBox.innerHTML = '';
+        var audio = document.createElement('audio');
+        audio.src = currentEvent.audio || src;
+        audio.setAttribute('type','audio/mpeg');
+        audio.setAttribute('class', 'audio');
+        audio.controls = true;
+        iframBox.append(audio);
       }
     }
     var transformRequest = (url, resourceType) => {
@@ -381,52 +395,81 @@
               var panoramaModalButton;
               var imageModalButton;
               var videoModalButton;
-              if (currentEvent.Photo === "" && currentEvent.embed === "" && currentEvent.video === "") {
-                imageModalButton = "";
-                panoramaModalButton = "";
-                videoModalButton = "";
-              }
-              else if (currentEvent.Photo === "" && currentEvent.embed === "" && currentEvent.video !== "") {
-                videoModalButton = `<a href="#openModal" id="videoModal" class="modalButton" onclick="showModal('video', currentEvent.video)">Video</a>`;
-                panoramaModalButton = "";
-                imageModalButton = "";
-              }
-              else if (currentEvent.Photo !== "" && currentEvent.embed !== "" && currentEvent.video === "") {
-                videoModalButton = "";
+              var audioModalButton;
+              console.log(currentEvent.Photo,currentEvent.video,currentEvent.audio);
+              
+              if(currentEvent.Photo){
                 imageModalButton = `<a href="#openModal" id="imageModal" class="modalButton" onclick="showModal('images', currentEvent.Photo)">Images </a>`;
-                panoramaModalButton = `<a href="#openModal" id="panaromaModal" class="modalButton" onclick="showModal('panarom', currentEvent.embed)">Panorama</a>`;
+              
               }
-              else if (currentEvent.embed === "" && currentEvent.Photo !== "" && currentEvent.video !== "") {
-                imageModalButton = `<a href="#openModal" id="imageModal" class="modalButton" onclick="showModal('images', currentEvent.Photo)">Images </a>`;
+              if(currentEvent.video){
                 videoModalButton = `<a href="#openModal" id="videoModal" class="modalButton" onclick="showModal('video', currentEvent.video)">Video</a>`;
-                panoramaModalButton = "";
+               
               }
-              else if (currentEvent.embed !== "" && currentEvent.Photo === "" && currentEvent.video !== "") {
+              if(currentEvent.audio){
+                audioModalButton = `<a href="#openModal" id="audioModal" class="modalButton" onclick="showModal('audio', currentEvent.audio)">Audio</a>`;
+               
+              }
+              if(currentEvent.embed){
                 panoramaModalButton = `<a href="#openModal" id="panaromaModal" class="modalButton" onclick="showModal('panarom', currentEvent.embed)">Panorama</a>`;
-                videoModalButton = `<a href="#openModal" id="videoModal" class="modalButton" onclick="showModal('video', currentEvent.video)">Video</a>`;
-                imageModalButton = "";
+                
               }
-              else if (currentEvent.video !== "" && currentEvent.embed !== "" && currentEvent.Photo === "") {
-                videoModalButton = `<a href="#openModal" id="videoModal" class="modalButton" onclick="showModal('video', currentEvent.video)">Video</a>`;;
-                imageModalButton = '';
-                panoramaModalButton = `<a href="#openModal" id="panaromaModal" class="modalButton" onclick="showModal('panarom', currentEvent.embed)">Panorama</a>`;
-              }
-              else if (currentEvent.Photo !== "" && currentEvent.embed === "" && currentEvent.video === "") {
-                panoramaModalButton = "";
-                imageModalButton = `<a href="#openModal" id="imageModal" class="modalButton" onclick="showModal('images', currentEvent.Photo)">Images </a>`;;
-                videoModalButton = "";
-              }
-              else {
-                videoModalButton = `<a href="#openModal" id="videoModal" class="modalButton" onclick="showModal('video', currentEvent.video)">Video</a>`;
-                imageModalButton = `<a href="#openModal" id="imageModal" class="modalButton" onclick="showModal('images', currentEvent.Photo)">Images </a>`;
-                panoramaModalButton = `<a href="#openModal" id="panaromaModal" class="modalButton" onclick="showModal('panarom', currentEvent.embed)">Panorama</a>`;
-              }
+              
+              // if (currentEvent.Photo === "" && currentEvent.embed === "" && currentEvent.video === "" && currentEvent.audio==="") {
+              //   imageModalButton = "";
+              //   panoramaModalButton = "";
+              //   videoModalButton = "";
+              //   audioModalButton = "";
+              // }
+              // else if (currentEvent.Photo === "" && currentEvent.embed === "" && currentEvent.video !== "" && currentEvent.audio === "") {
+              //   videoModalButton = `<a href="#openModal" id="videoModal" class="modalButton" onclick="showModal('video', currentEvent.video)">Video</a>`;
+              //   panoramaModalButton = "";
+              //   imageModalButton = "";
+              //   audioModalButton = "";
+              // }
+              // else if (currentEvent.Photo !== "" && currentEvent.embed !== "" && currentEvent.video === "" && currentEvent.audio === "") {
+              //   videoModalButton = "";
+              //   audioModalButton = "";
+              //   imageModalButton = `<a href="#openModal" id="imageModal" class="modalButton" onclick="showModal('images', currentEvent.Photo)">Images </a>`;
+              //   panoramaModalButton = `<a href="#openModal" id="panaromaModal" class="modalButton" onclick="showModal('panarom', currentEvent.embed)">Panorama</a>`;
+              // }
+              // else if (currentEvent.embed === "" && currentEvent.Photo !== "" && currentEvent.video !== "" && currentEvent.audio !== "") {
+              //   imageModalButton = `<a href="#openModal" id="imageModal" class="modalButton" onclick="showModal('images', currentEvent.Photo)">Images </a>`;
+              //   videoModalButton = `<a href="#openModal" id="videoModal" class="modalButton" onclick="showModal('video', currentEvent.video)">Video</a>`;
+              //   panoramaModalButton = "";
+              //   audioModalButton = `<a href="#openModal" id="audioModal" class="modalButton" onclick="showModal('audio', currentEvent.audio)">Audio</a>`;
+
+              // }
+              // else if (currentEvent.embed !== "" && currentEvent.Photo === "" && currentEvent.video !== "" && currentEvent.audio === ""){
+              //   panoramaModalButton = `<a href="#openModal" id="panaromaModal" class="modalButton" onclick="showModal('panarom', currentEvent.embed)">Panorama</a>`;
+              //   videoModalButton = `<a href="#openModal" id="videoModal" class="modalButton" onclick="showModal('video', currentEvent.video)">Video</a>`;
+              //   imageModalButton = "";
+              //   audioModalButton = "";
+              // }
+              // else if (currentEvent.video !== "" && currentEvent.embed !== "" && currentEvent.Photo === "" && currentEvent.audio === "") {
+              //   videoModalButton = `<a href="#openModal" id="videoModal" class="modalButton" onclick="showModal('video', currentEvent.video)">Video</a>`;;
+              //   imageModalButton = '';
+              //   audioModalButton = "";
+              //   panoramaModalButton = `<a href="#openModal" id="panaromaModal" class="modalButton" onclick="showModal('panarom', currentEvent.embed)">Panorama</a>`;
+              // }
+              // else if (currentEvent.Photo !== "" && currentEvent.embed === "" && currentEvent.video === "" && currentEvent.audio ==="") {
+              //   panoramaModalButton = "";
+              //   imageModalButton = `<a href="#openModal" id="imageModal" class="modalButton" onclick="showModal('images', currentEvent.Photo)">Images </a>`;;
+              //   videoModalButton = "";
+              //   audioModalButton = "";
+              // }
+              // else {
+              //   videoModalButton = `<a href="#openModal" id="videoModal" class="modalButton" onclick="showModal('video', currentEvent.video)">Video</a>`;
+              //   imageModalButton = `<a href="#openModal" id="imageModal" class="modalButton" onclick="showModal('images', currentEvent.Photo)">Images </a>`;
+              //   panoramaModalButton = `<a href="#openModal" id="panaromaModal" class="modalButton" onclick="showModal('panarom', currentEvent.embed)">Panorama</a>`;
+              //   audioModalButton = `<a href="#openModal" id="audioModal" class="modalButton" onclick="showModal('audio', currentEvent.audio)">Audio</a>`;
+              // }
 
 
               //set popup text
               //You can adjust the values of the popup to match the headers of your CSV.
               // For example: e.features[0].properties.Name is retrieving information from the field Name in the original CSV.
-              var description = `<h3>` + e.features[0].properties.Name + `</h3>` + `<h4>` + `<b>` + `Notes: ` + `</b>` + e.features[0].properties.Notes + `</h4>` + imageModalButton + panoramaModalButton + videoModalButton;
+              var description = `<h3>` + e.features[0].properties.Name + `</h3>` + `<h4>` + `<b>` + `Notes: ` + `</b>` + e.features[0].properties.Notes + `</h4>` + imageModalButton + panoramaModalButton + videoModalButton + audioModalButton;
 
               // Ensure that if the map is zoomed out such that multiple
               // copies of the feature are visible, the popup appears
