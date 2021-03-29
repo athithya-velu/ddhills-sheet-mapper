@@ -34,6 +34,14 @@
       margin-right: auto;
       margin-left: auto;
     }
+
+    @media only screen and (max-width: 768px) {
+      .photoRefernce {
+        flex: 0 0 auto;
+      margin-right: auto;
+      margin-left: auto;
+      }
+    }
     /* Popup styling */
 
     .mapboxgl-popup {
@@ -209,6 +217,11 @@
       color: #fff;
       font-family: "Poppins", sans-serif;
     }
+    @media only screen and (max-width: 768px) {
+      h1 {
+       font-size: 26px;
+      }
+    }
 
     h1 span {
       color: #cda45e;
@@ -280,6 +293,7 @@
         iframBox.innerHTML = '';
         var video = document.createElement('video');
         video.src = currentEvent.video || src;
+        video.type ='video/mp4';
         video.setAttribute('width', '750');
         video.setAttribute('height', '450');
         video.setAttribute('class', 'vid');
